@@ -63,8 +63,20 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.08 0.02 250);
+  --foreground: oklch(0.98 0.01 240);
+  --electric: oklch(0.7 0.25 250);
+  --electric-glow: oklch(0.75 0.28 245);
+  --electric-deep: oklch(0.5 0.28 260);
+  --surface: oklch(0.12 0.03 250);
+  --surface-elevated: oklch(0.16 0.04 250);
+  --gradient-electric: linear-gradient(135deg, oklch(0.7 0.25 250), oklch(0.55 0.28 265));
+  --gradient-radial: radial-gradient(circle at 50% 0%, oklch(0.7 0.25 250 / 0.25), transparent 60%);
+  --shadow-electric: 0 0 40px oklch(0.7 0.25 250 / 0.5), 0 0 80px oklch(0.7 0.25 250 / 0.25);
+  --shadow-glow: 0 0 20px oklch(0.7 0.25 250 / 0.6);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
