@@ -35,6 +35,12 @@ function Contacto() {
     const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      toast.error("Error de configuración en el formulario.");
+      setSending(false);
+      return;
+    }
+
     // Cargamos la librería dinámicamente solo en el cliente
     const emailjs = (await import("@emailjs/browser")).default;
 
