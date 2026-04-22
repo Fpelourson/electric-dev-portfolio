@@ -7,11 +7,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
+import emailjs from "@emailjs/browser";
+import ogImage from "@/assets/og-image-removebg-preview.png";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
+    links: [
+      {
+        rel:"icon",
+        href: ogImage
+      },
+    ],
     meta: [
-      { title: "Contacto · Portafolio Frontend" },
+      { title: "Contacto · Federico Pelourson" },
       { name: "description", content: "Hablemos sobre tu próximo proyecto frontend." },
     ],
   }),
@@ -24,11 +32,24 @@ function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      toast.success("¡Mensaje enviado! Te contactaré pronto.");
-      setSending(false);
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+
+    // Reemplaza estos valores con los de tu cuenta de EmailJS
+    const SERVICE_ID = "service_kob7qv9";
+    const TEMPLATE_ID = "template_z07baob";
+    const PUBLIC_KEY = "dX9pBOkpjvNZ8xN7c";
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target as HTMLFormElement, PUBLIC_KEY)
+      .then(() => {
+        toast.success("¡Mensaje enviado! Te contactaré pronto.");
+        (e.target as HTMLFormElement).reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Hubo un error al enviar el mensaje. Inténtalo de nuevo.");
+      })
+      .finally(() => {
+        setSending(false);
+      });
   };
 
   return (
@@ -40,7 +61,6 @@ function Contacto() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
-          <p className="font-mono text-sm text-electric mb-3">// contacto</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Hagamos algo <span className="text-gradient-electric">increíble</span>
           </h1>
@@ -56,10 +76,10 @@ function Contacto() {
             className="lg:col-span-2 space-y-4"
           >
             {[
-              { icon: Mail, label: "Email", value: "hola@tudominio.dev", href: "mailto:hola@tudominio.dev" },
-              { icon: Github, label: "GitHub", value: "@tu-usuario", href: "https://github.com" },
-              { icon: Linkedin, label: "LinkedIn", value: "/in/tu-perfil", href: "https://linkedin.com" },
-              { icon: MapPin, label: "Ubicación", value: "Remoto · LATAM" },
+              { icon: Mail, label: "Email", value: "fede_pelourson@hotmail.com", href: "mailto:fede_pelourson@hotmail.com" },
+              { icon: Github, label: "GitHub", value: "@Fpelourson", href: "https://github.com/Fpelourson" },
+              { icon: Linkedin, label: "LinkedIn", value: "federico-pelourson", href: "https://linkedin.com/in/federico-pelourson" },
+              { icon: MapPin, label: "Ubicación", value: "Remoto · Europa" },
             ].map((c) => {
               const Inner = (
                 <div className="flex items-start gap-4 p-5 rounded-xl glass hover:border-electric transition-all group">
@@ -89,20 +109,20 @@ function Contacto() {
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block">Nombre</label>
-                <Input required placeholder="Tu nombre" className="bg-surface border-border focus-visible:border-electric" />
+                <Input name="user_name" required placeholder="Tu nombre" className="bg-surface border-border focus-visible:border-electric" />
               </div>
               <div>
                 <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block">Email</label>
-                <Input required type="email" placeholder="tu@email.com" className="bg-surface border-border focus-visible:border-electric" />
+                <Input name="user_email" required type="email" placeholder="tu@email.com" className="bg-surface border-border focus-visible:border-electric" />
               </div>
             </div>
             <div>
               <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block">Asunto</label>
-              <Input required placeholder="Sobre qué quieres hablar" className="bg-surface border-border focus-visible:border-electric" />
+              <Input name="subject" required placeholder="Sobre qué quieres hablar" className="bg-surface border-border focus-visible:border-electric" />
             </div>
             <div>
               <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block">Mensaje</label>
-              <Textarea required rows={6} placeholder="Cuéntame sobre tu proyecto..." className="bg-surface border-border focus-visible:border-electric resize-none" />
+              <Textarea name="message" required rows={6} placeholder="Cuéntame sobre tu proyecto..." className="bg-surface border-border focus-visible:border-electric resize-none" />
             </div>
             <Button type="submit" size="lg" disabled={sending} className="w-full bg-gradient-electric text-primary-foreground shadow-electric hover:opacity-90 font-semibold">
               {sending ? "Enviando..." : <>Enviar mensaje <Send className="ml-2 h-4 w-4" /></>}

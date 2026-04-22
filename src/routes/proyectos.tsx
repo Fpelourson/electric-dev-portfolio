@@ -1,12 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Monitor } from "lucide-react";
 
 export const Route = createFileRoute("/proyectos")({
   head: () => ({
+    links: [
+      {
+        rel:"icon",
+        href: "/src/assets/og-image-removebg-preview.png"
+      },
+    ],
     meta: [
-      { title: "Proyectos · Portafolio Frontend" },
-      { name: "description", content: "Selección de proyectos de desarrollo frontend con React, Three.js y más." },
+      { title: "Proyectos · Federico Pelourson" },
+      { name: "description", content: "Selección de proyectos de desarrollo frontend con React, TypeScript y más." },
     ],
   }),
   component: Proyectos,
@@ -14,41 +20,60 @@ export const Route = createFileRoute("/proyectos")({
 
 const projects = [
   {
-    title: "Dashboard Analytics 3D",
-    desc: "Plataforma de analítica con visualizaciones interactivas en tiempo real y gráficos 3D.",
-    tags: ["React", "Three.js", "D3", "WebGL"],
+    title: "Dessert store",
+    desc: "Frontend de tienda de postres con contador y carrito de compras.",
+    tags: ["React", "Typescript", "Tailwind css", "Zustand"],
     color: "from-blue-500 to-cyan-400",
+    image: "/src/assets/active-states.jpg", // Pon tu imagen en la carpeta 'public'
+    demoUrl: "https://product-list-with-cart-dessert.netlify.app/",
+    repoUrl: "https://github.com/Fpelourson/Product-list-with-cart",
   },
   {
-    title: "E-commerce Premium",
-    desc: "Tienda online con experiencia de producto en 3D, checkout optimizado y PWA.",
-    tags: ["Next.js", "Stripe", "GSAP", "Tailwind"],
-    color: "from-blue-600 to-indigo-500",
+    title: "Newsletter-Sing-Up",
+    desc: "Logeo con requerimientos de email validos.",
+    tags: ["React", "Typescript", "Tailwind css", "Github"],
+    color: "from-blue-500 to-cyan-400",
+    image: "/src/assets/desktop-design.jpg", // Pon tu imagen en la carpeta 'public'
+    demoUrl: "https://newsletter-sing.netlify.app/",
+    repoUrl: "https://github.com/Fpelourson/Newsletter-Sing-Up",
   },
   {
-    title: "Portal Inmobiliario",
-    desc: "Tours virtuales con WebGL, mapas interactivos y búsqueda avanzada por filtros.",
-    tags: ["React", "Mapbox", "Three.js"],
-    color: "from-indigo-500 to-blue-400",
-  },
-  {
-    title: "Plataforma SaaS",
-    desc: "App de gestión empresarial multi-tenant con dashboards personalizables.",
-    tags: ["TypeScript", "tRPC", "Prisma"],
+    title: "Saber es clave",
+    desc: "Juego de preguntas y respuestas con un orden random y utilizando el localstorage.",
+    tags: ["Javascript", "CSS", "html"],
     color: "from-cyan-500 to-blue-500",
+    image: "/src/assets/saber.png",
+    demoUrl: "https://saber-es-clave.netlify.app/",
+    repoUrl: "https://github.com/Fpelourson/Coderhouse",
   },
   {
-    title: "App de Música",
-    desc: "Reproductor con visualizador de audio 3D y recomendaciones IA.",
-    tags: ["React", "Web Audio", "Three.js"],
-    color: "from-blue-500 to-purple-500",
+    title: "Clon Spotify",
+    desc: "Practica de diseño con la pagina oficial de spotify 2024.",
+    tags: ["html", "CSS", "Javascript"],
+    color: "from-indigo-500 to-blue-400",
+    image: "/src/assets/spotify.png",
+    demoUrl: "https://spotify-clon-byfederico.netlify.app/",
+    repoUrl: "https://github.com/Fpelourson/Clon-Spotify",
   },
-  {
-    title: "Editor Visual",
-    desc: "Constructor drag & drop para landing pages con render server-side.",
-    tags: ["React", "DnD Kit", "Vite"],
-    color: "from-sky-500 to-blue-600",
-  },
+  
+  // {
+  //   title: "App de Música",
+  //   desc: "Reproductor con visualizador de audio 3D y recomendaciones IA.",
+  //   tags: ["React", "Web Audio", "Three.js"],
+  //   color: "from-blue-500 to-purple-500",
+  //   image: "/music.png",
+  //   demoUrl: "#",
+  //   repoUrl: "#",
+  // },
+  // {
+  //   title: "Editor Visual",
+  //   desc: "Constructor drag & drop para landing pages con render server-side.",
+  //   tags: ["React", "DnD Kit", "Vite"],
+  //   color: "from-sky-500 to-blue-600",
+  //   image: "/editor.png",
+  //   demoUrl: "#",
+  //   repoUrl: "#",
+  // },
 ];
 
 function Proyectos() {
@@ -60,12 +85,11 @@ function Proyectos() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
-          <p className="font-mono text-sm text-electric mb-3">// portfolio</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Proyectos <span className="text-gradient-electric">recientes</span>
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-            Una selección de trabajos donde combino diseño, código y un toque de magia 3D.
+              Una selección de trabajos donde combino diseño, código y experiencias interactivas.
           </p>
         </motion.div>
 
@@ -81,11 +105,20 @@ function Proyectos() {
             >
               <div className={`relative h-52 bg-gradient-to-br ${p.color} overflow-hidden`}>
                 <div className="absolute inset-0 grid-bg opacity-30" />
+                {p.image && (
+                  <img 
+                    src={p.image} 
+                    alt={p.title} 
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" 
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
                 <div
-                  className="absolute right-6 top-6 h-24 w-24 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 animate-float"
+                  className="absolute right-6 top-6 h-24 w-24 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 animate-float flex items-center justify-center"
                   style={{ transformStyle: "preserve-3d" }}
-                />
+                >
+                  <Monitor className="text-white/40 w-12 h-12" />
+                </div>
                 <div
                   className="absolute right-12 bottom-8 h-12 w-12 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 group-hover:-rotate-12 transition-transform duration-500"
                 />
@@ -104,10 +137,10 @@ function Proyectos() {
                   ))}
                 </div>
                 <div className="flex gap-3 pt-2 border-t border-border">
-                  <a href="#" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-electric transition-colors">
+                  <a href={p.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-electric transition-colors">
                     <ExternalLink className="h-4 w-4" /> Demo
                   </a>
-                  <a href="#" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-electric transition-colors">
+                  <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-electric transition-colors">
                     <Github className="h-4 w-4" /> Código
                   </a>
                 </div>

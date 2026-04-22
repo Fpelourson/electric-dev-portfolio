@@ -10,16 +10,16 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass">
+    <header className="fixed top-0 left-0 right-0 z-50 glass border-none">
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <div className="relative">
             <div className="absolute inset-0 bg-electric blur-md opacity-60 group-hover:opacity-100 transition-opacity" />
             <Code2 className="relative h-7 w-7 text-electric" />
           </div>
-          <span className="font-mono text-sm tracking-widest text-foreground">
+          {/* <span className="font-mono text-sm tracking-widest text-foreground">
             &lt;DEV/&gt;
-          </span>
+          </span> */}
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -38,16 +38,16 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/Fpelourson" target="_blank" rel="noopener noreferrer"
             className="p-2 text-muted-foreground hover:text-electric transition-colors hover:scale-110">
             <Github className="h-5 w-5" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://linkedin.com/in/federico-pelourson" target="_blank" rel="noopener noreferrer"
             className="p-2 text-muted-foreground hover:text-electric transition-colors hover:scale-110">
             <Linkedin className="h-5 w-5" />
           </a>
           <Button asChild size="sm" className="ml-2 bg-gradient-electric text-primary-foreground hover:opacity-90 shadow-glow font-semibold">
-            <a href="/cv.pdf" download>
+            <a href="/src/assets/Federico Pelourson CV developer.pdf" download>
               <Download className="h-4 w-4 mr-2" /> CV
             </a>
           </Button>

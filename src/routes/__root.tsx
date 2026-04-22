@@ -27,7 +27,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Portafolio · Desarrollador Frontend" },
-      { name: "description", content: "Portafolio de desarrollador frontend especializado en React, TypeScript y experiencias 3D." },
+      { name: "description", content: "Portafolio de desarrollador frontend especializado en React, TypeScript y animaciones modernas." },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
