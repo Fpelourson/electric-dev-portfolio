@@ -7,15 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
-import emailjs from "@emailjs/browser";
-import ogImage from "@/assets/og-image-removebg-preview.png";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
     links: [
       {
         rel:"icon",
-        href: ogImage
+        href: "/og-image-removebg-preview.png"
       },
     ],
     meta: [
@@ -29,13 +27,16 @@ export const Route = createFileRoute("/contacto")({
 function Contacto() {
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
 
     const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Cargamos la librería dinámicamente solo en el cliente
+    const emailjs = (await import("@emailjs/browser")).default;
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target as HTMLFormElement, PUBLIC_KEY)
       .then(() => {

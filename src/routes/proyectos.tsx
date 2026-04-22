@@ -7,7 +7,7 @@ export const Route = createFileRoute("/proyectos")({
     links: [
       {
         rel:"icon",
-        href: "/src/assets/og-image-removebg-preview.png"
+        href: "/og-image-removebg-preview.png"
       },
     ],
     meta: [
@@ -24,7 +24,7 @@ const projects = [
     desc: "Frontend de tienda de postres con contador y carrito de compras.",
     tags: ["React", "Typescript", "Tailwind css", "Zustand"],
     color: "from-blue-500 to-cyan-400",
-    image: "/src/assets/active-states.jpg", // Pon tu imagen en la carpeta 'public'
+    image: "/active-states.jpg",
     demoUrl: "https://product-list-with-cart-dessert.netlify.app/",
     repoUrl: "https://github.com/Fpelourson/Product-list-with-cart",
   },
@@ -33,7 +33,7 @@ const projects = [
     desc: "Logeo con requerimientos de email validos.",
     tags: ["React", "Typescript", "Tailwind css", "Github"],
     color: "from-blue-500 to-cyan-400",
-    image: "/src/assets/desktop-design.jpg", // Pon tu imagen en la carpeta 'public'
+    image: "/desktop-design.jpg",
     demoUrl: "https://newsletter-sing.netlify.app/",
     repoUrl: "https://github.com/Fpelourson/Newsletter-Sing-Up",
   },
@@ -42,7 +42,7 @@ const projects = [
     desc: "Juego de preguntas y respuestas con un orden random y utilizando el localstorage.",
     tags: ["Javascript", "CSS", "html"],
     color: "from-cyan-500 to-blue-500",
-    image: "/src/assets/saber.png",
+    image: "/saber.png",
     demoUrl: "https://saber-es-clave.netlify.app/",
     repoUrl: "https://github.com/Fpelourson/Coderhouse",
   },
@@ -51,7 +51,7 @@ const projects = [
     desc: "Practica de diseño con la pagina oficial de spotify 2024.",
     tags: ["html", "CSS", "Javascript"],
     color: "from-indigo-500 to-blue-400",
-    image: "/src/assets/spotify.png",
+    image: "/spotify.png",
     demoUrl: "https://spotify-clon-byfederico.netlify.app/",
     repoUrl: "https://github.com/Fpelourson/Clon-Spotify",
   },

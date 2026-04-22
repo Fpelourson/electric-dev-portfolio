@@ -2,14 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Sparkles, Zap, Code, Layers } from "lucide-react";
 import { motion } from "framer-motion";
-import ogImage from "@/assets/og-image-removebg-preview.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
       {
         rel:"icon",
-        href: ogImage
+        href: "/og-image-removebg-preview.png"
       },
     ],
     meta: [
@@ -68,7 +67,7 @@ function Index() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-electric/40 hover:bg-electric/10 hover:border-electric">
-                <a href="/src/assets/Federico Pelourson CV developer.pdf" download>
+                <a href="/Federico Pelourson CV developer.pdf" download>
                   <Download className="mr-2 h-4 w-4" /> Descargar CV
                 </a>
               </Button>
