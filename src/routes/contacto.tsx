@@ -33,10 +33,9 @@ function Contacto() {
     e.preventDefault();
     setSending(true);
 
-    // Reemplaza estos valores con los de tu cuenta de EmailJS
-    const SERVICE_ID = "service_kob7qv9";
-    const TEMPLATE_ID = "template_z07baob";
-    const PUBLIC_KEY = "dX9pBOkpjvNZ8xN7c";
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target as HTMLFormElement, PUBLIC_KEY)
       .then(() => {
