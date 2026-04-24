@@ -1,6 +1,6 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, ScrollRestoration, Scripts } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
-import appCss from "../styles.css?url";
+import "../styles.css";
 
 function NotFoundComponent() {
   return (
@@ -25,25 +25,12 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portafolio · Desarrollador Frontend" },
       { name: "description", content: "Portafolio de desarrollador frontend especializado en React, TypeScript y animaciones modernas." },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="es">
-      <head><HeadContent /></head>
-      <body>{children}<Scripts /></body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return (
@@ -52,6 +39,9 @@ function RootComponent() {
       <main className="pt-20">
         <Outlet />
       </main>
+      <ScrollRestoration />
+      <HeadContent />
+      <Scripts />
     </>
   );
 }
